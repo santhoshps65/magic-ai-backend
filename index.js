@@ -9,7 +9,7 @@ const openai = new OpenAI({
   baseURL: 'https://integrate.api.nvidia.com/v1',
 });
 
-// Health check endpoint
+// Health check
 app.get('/', (req, res) => {
   res.send('Magic Mirror AI backend is running');
 });
@@ -25,7 +25,7 @@ app.get('/api/check-env', (req, res) => {
 app.post('/api/generate', async (req, res) => {
   console.log('Received request with body:', req.body);
 
-  const { topic, style = 'friendly', communityName = 'general', model = 'meta/llama-3.3-70b-instruct' } = req.body;
+  const { topic, style = 'friendly', communityName = 'general', model = 'nvidia/nemotron-3-super-120b-a12b' } = req.body;
 
   if (!topic) {
     return res.status(400).json({ error: 'Missing topic' });
